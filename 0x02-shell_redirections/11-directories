@@ -1,0 +1,2 @@
+#!/bin/dash
+find . -type d ! -path . | wc -l
