@@ -1,5 +1,4 @@
-
-r when a GET HTTP method is requested to Apache web server
+# Fix 500 error when a GET HTTP method is requested to Apache web server
 
 exec {'replace':
   provider => shell,
