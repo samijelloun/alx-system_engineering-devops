@@ -1,5 +1,4 @@
 # This Puppet manifest creates a file at /tmp/school
-
 file { '/tmp/school':
   ensure  => file,
   content => 'I love Puppet',
