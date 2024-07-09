@@ -1,19 +1,18 @@
 #!/usr/bin/python3
-"""Function that queries the Reddit API and
-returns the number of subscribers."""
+""" queries the Reddit API """
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """Returns the number of subs, 0 if the given subreddit is invalid."""
-    headers = {"User-Agent": "youBot/1.0"}
-    r = requests.get(
-        f"https://www.reddit.com/r/{subreddit}/about.json",
-        headers=headers,
-        allow_redirects=False,
-    )
-    if r.status_code == 200:
-        data = r.json()
-        subs = data["data"]["subscribers"]
-        return subs
-    return 0
+    """ returns the number of subscribers for a given subreddit. """
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+    }
+    try:
+        response = requests.get(url, headers=headers, allow_redirects=False)
+        data = response.json().get('data')
+        subscribers = data.get('subscribers')
+        return subscribers
+    except (KeyError, requests.RequestException):
+        return 0
